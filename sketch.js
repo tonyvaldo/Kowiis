@@ -6,11 +6,16 @@ let cnv;
 let points = 0;
 let w = 600;
 let h = 600;
+let player;
+let algae;
 
 function setup() {
   cnv = createCanvas(w,h);
 textFont('courier');
 
+player = new Player();
+
+algae = new Algae();
 }
 
 function draw() {
@@ -34,8 +39,6 @@ function draw() {
 
 }
 
-
-
 function title() {
   background(33, 92, 49);
   textSize(80);
@@ -54,7 +57,11 @@ function titleMouseClicked() {
 
 function level1() {
   background(156, 214, 189);
-  text('click for points', w/2, h - 30);
+  // text('click for points', w/2, h - 30);
+
+  player.display();
+  algae.display();
+  algae.move();
 }
 
 function level1MouseClicked() {
