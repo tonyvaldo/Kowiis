@@ -8,6 +8,13 @@ let w = 600;
 let h = 600;
 let player;
 let algae = [];
+let playerImg;
+let algaeImg;
+
+function preload(){
+  playerImg = loadImage('assets/clammy.png')
+  algaeImg = loadImage('assets/algae.png')
+}
 
 function setup() {
   cnv = createCanvas(w, h);
@@ -81,10 +88,15 @@ if (random(1) <= 0.01){
   player.display();
   player.move();
 
+//iterating through algae array to display and move them
+
+//using for loop
 for (let i = 0; i < algae.length; i++){
   algae[i].display();
   algae[i].move();
 }
+
+
 
   //check for collision, and if there is, increase points by 1 AND splce that coin out of array
 // need to iterate backwards through array
@@ -93,6 +105,7 @@ for (let i = algae.length - 1; i >= 0; i--){
   if (dist(player.x, player.y, algae[i].x, algae[i].y) <= (player.r + algae[i].r) / 2) {
     points++;
     console.log(points);
+    algae.splice(i, 1);
   }
 }
 
