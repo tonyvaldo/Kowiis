@@ -2,7 +2,7 @@ class Algae {
   constructor() {
     this.r = 50;
     this.y = random(w);
-    this.x = 0 - this.r;
+    this.x = 500 + this.r;
 
   }
 
@@ -12,6 +12,6 @@ class Algae {
   }
 
   move(){
-    this.x++;
+    this.x--;
   }
 }
