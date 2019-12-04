@@ -7,7 +7,7 @@ let points = 0;
 let w = 600;
 let h = 600;
 let player;
-let algae;
+let algae = [];
 
 function setup() {
   cnv = createCanvas(w, h);
@@ -15,7 +15,8 @@ function setup() {
 
   player = new Player();
 
-  algae = new Algae();
+  // algae[0] = new Algae();
+  algae.push(new Algae());
 }
 
 function draw() {
@@ -39,8 +40,8 @@ function draw() {
 
 }
 
-function keyPressed(){
-  if (keyCode == LEFT_ARROW){
+function keyPressed() {
+  if (keyCode == LEFT_ARROW) {
     player.direction = 'left'
   } else if (keyCode == RIGHT_ARROW) {
     player.direction = 'right'
@@ -48,7 +49,7 @@ function keyPressed(){
     player.direction = 'up'
   } else if (keyCode == DOWN_ARROW) {
     player.direction = 'down'
-  } else if (key = ' '){
+  } else if (key = ' ') {
     player.direction = 'still';
   }
 }
@@ -73,20 +74,39 @@ function level1() {
   background(156, 214, 189);
   // text('click for points', w/2, h - 30);
 
+if (random(1) <= 0.01){
+  algae.push(new Algae());
+}
+
   player.display();
   player.move();
 
-  algae.display();
-  algae.move();
+for (let i = 0; i < algae.length; i++){
+  algae[i].display();
+  algae[i].move();
+}
+
+  //check for collision, and if there is, increase points by 1 AND splce that coin out of array
+// need to iterate backwards through array
+
+for (let i = algae.length - 1; i >= 0; i--){
+  if (dist(player.x, player.y, algae[i].x, algae[i].y) <= (player.r + algae[i].r) / 2) {
+    points++;
+    console.log(points);
+  }
+}
+
+  text(`points: ${points}`, w / 4, h - 30);
+
 }
 
 function level1MouseClicked() {
-  points++;
-  console.log('points = ' + points);
-
-  if (points >= 10) {
-    state = 'YOU WIN';
-  }
+  // points++;
+  // console.log('points = ' + points);
+  //
+  // if (points >= 10) {
+  //   state = 'YOU WIN';
+  // }
 }
 
 function youWin() {
