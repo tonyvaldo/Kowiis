@@ -10,10 +10,12 @@ let player;
 let algae = [];
 let playerImg;
 let algaeImg;
+let riverImg;
 
 function preload(){
   playerImg = loadImage('assets/clammy.png')
   algaeImg = loadImage('assets/algae.png')
+  riverImg = loadImage('assets/river sample.jpg')
 }
 
 function setup() {
@@ -78,7 +80,7 @@ function titleMouseClicked() {
 }
 
 function level1() {
-  background(156, 214, 189);
+  background(riverImg);
   // text('click for points', w/2, h - 30);
 
 if (random(1) <= 0.01){
@@ -110,7 +112,7 @@ for (let i = algae.length - 1; i >= 0; i--){
 }
 
   text(`points: ${points}`, w / 4, h - 30);
-
+fill(249, 192, 249);
 }
 
 function level1MouseClicked() {
