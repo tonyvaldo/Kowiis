@@ -2,7 +2,7 @@ class Algae {
   constructor() {
     this.r = 50;
     this.y = random(w);
-    this.x = 500 + this.r;
+    this.x = 802 + this.r;
 
   }
 

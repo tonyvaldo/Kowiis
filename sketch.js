@@ -4,8 +4,8 @@
 let state = 'title'
 let cnv;
 let points = 0;
-let w = 600;
-let h = 600;
+let w = 800;
+let h = 400;
 let player;
 let algae = [];
 let playerImg;
@@ -83,7 +83,7 @@ function level1() {
   background(riverImg);
   // text('click for points', w/2, h - 30);
 
-if (random(1) <= 0.01){
+if (random(1) <= 0.05){
   algae.push(new Algae());
 }
 
@@ -98,8 +98,6 @@ for (let i = 0; i < algae.length; i++){
   algae[i].move();
 }
 
-
-
   //check for collision, and if there is, increase points by 1 AND splce that coin out of array
 // need to iterate backwards through array
 
@@ -111,7 +109,7 @@ for (let i = algae.length - 1; i >= 0; i--){
   }
 }
 
-  text(`points: ${points}`, w / 4, h - 30);
+  text(`points: ${points}`, w / 8, h - 30);
 fill(249, 192, 249);
 }
 
