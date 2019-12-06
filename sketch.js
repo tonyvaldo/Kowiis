@@ -104,8 +104,10 @@ for (let i = 0; i < algae.length; i++){
 for (let i = algae.length - 1; i >= 0; i--){
   if (dist(player.x, player.y, algae[i].x, algae[i].y) <= (player.r + algae[i].r) / 2) {
     points++;
-    console.log(points);
     algae.splice(i, 1);
+  }else if (algae[i].y > h){
+    algae.splice(i, 1);
+    console.log('algae is gone!'); 
   }
 }
 
