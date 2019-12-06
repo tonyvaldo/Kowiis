@@ -12,10 +12,29 @@ let playerImg;
 let algaeImg;
 let riverImg;
 
+//spritesheets and animations
+let titleSS;
+let titleJSON;
+let playerSS;
+let algaeSS;
+let playerJSON;
+let algaeJSON;
+let playerAnimation = [];
+let coinAnimation = [];
+
 function preload(){
+  //still images
   playerImg = loadImage('assets/clammy.png')
   algaeImg = loadImage('assets/algae.png')
   riverImg = loadImage('assets/river sample.jpg')
+
+  //spritesheets
+  // titleSS = loadImage('');
+  // titleJSON = loadJSON('');
+  // playerSS = loadImage('');
+  // playerJSON = loadJSON('');
+  // algaeSS = loadImage('');
+  // algaeJSON = loadJSON('');
 }
 
 function setup() {
@@ -107,7 +126,7 @@ for (let i = algae.length - 1; i >= 0; i--){
     algae.splice(i, 1);
   }else if (algae[i].y > h){
     algae.splice(i, 1);
-    console.log('algae is gone!'); 
+    console.log('algae is gone!');
   }
 }
 
