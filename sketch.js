@@ -9,6 +9,7 @@ let h = 400;
 let player;
 // let algae;
 let algae = [];
+let raccoon = [];
 let riverImg;
 let titleImg;
 

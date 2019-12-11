@@ -7,3 +7,11 @@ canvas {
 margin: 100px auto;
 
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  position: bottom;
+}
