@@ -8,7 +8,7 @@ let w = 800;
 let h = 400;
 let player;
 // let algae;
-let algae = [];
+// let algae = [];
 // let playerImg;
 // let algaeImg;
 let riverImg;
@@ -16,14 +16,19 @@ let titleImg;
 
 //spritesheets and animations
 let img;
-let titleSS;
-let titleJSON;
+// let titleSS;
+// let titleJSON;
 let playerSS;
 let algaeSS;
+let raccoonSS;
+
 let playerJSON;
 let algaeJSON;
+let raccoonJSON;
+
 let playerAnimation = [];
 let algaeAnimation = [];
+let raccoonAnimation = [];
 // let titleAnimation = [];
 
 function preload() {
@@ -36,10 +41,12 @@ function preload() {
   //  spritesheets
   // titleSS = loadImage('assets/SS/title.png');
   // titleJSON = loadJSON('assets/new_jsons/title.json');
-  playerSS = loadImage('assets/SS/clammysheet_right.png');
-  playerJSON = loadJSON('assets/new_jsons/clammy_right.json');
+  playerSS = loadImage('assets/SS/clammy_2.png');
+  playerJSON = loadJSON('assets/new_jsons/clammy_2.json');
   algaeSS = loadImage('assets/SS/algaesheet.png');
   algaeJSON = loadJSON('assets/new_jsons/algae.json');
+  raccoonSS = loadImage('assets/SS/raccoonsheet.png');
+  raccoonJSON = loadJSON('assets/new_jsons/raccoon.json');
 }
 
 function setup() {
@@ -63,6 +70,15 @@ function setup() {
     let img = algaeSS.get(pos.x, pos.y, pos.w, pos.h);
     algaeAnimation.push(img);
     console.log(algaeFrames[i]);
+
+  }
+
+  let raccoonFrames = raccoonJSON.frames;
+  for (let i = 0; i < raccoonFrames.length; i++) {
+    let pos = raccoonFrames[i].frame;
+    let img = raccoonSS.get(pos.x, pos.y, pos.w, pos.h);
+    raccoonAnimation.push(img);
+    console.log(raccoonFrames[i]);
 
   }
   //
@@ -123,7 +139,7 @@ function title() {
   // text('KOWIIS', w / 2, h / 5);
 
   textSize(30);
-  text('Click to start swimming!', w / 2, h / 1.2);
+  text('CLICK TO START NOM-NOM!', w / 2, h / 1.2);
 
 
 }

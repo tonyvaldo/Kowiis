@@ -3,6 +3,9 @@ class Algae {
     this.r = 50;
     this.y = random(w);
     this.x = 802 + this.r;
+    
+
+
 
   }
 
@@ -13,5 +16,6 @@ class Algae {
 
   move(){
     this.x--;
+
   }
 }
