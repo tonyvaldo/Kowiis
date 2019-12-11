@@ -9,8 +9,6 @@ let h = 400;
 let player;
 // let algae;
 let algae = [];
-// let playerImg;
-// let algaeImg;
 let riverImg;
 let titleImg;
 
@@ -107,9 +105,13 @@ function draw() {
       level1();
       cnv.mouseClicked(level1MouseClicked);
       break;
-    case 'YOU WIN':
-      youWin();
-      cnv.mouseClicked(youWinMouseClicked)
+    // case 'YOU WIN':
+    //   youWin();
+    //   cnv.mouseClicked(youWinMouseClicked)
+    //   break;
+    case 'GAME OVER':
+      gameOver();
+      cnv.mouseClicked(gameOverMouseClicked)
       break;
     default:
       break;
@@ -198,17 +200,31 @@ function level1MouseClicked() {
   // }
 }
 
-function youWin() {
+// function youWin() {
+//   background(195, 159, 212);
+//   textSize(80);
+//   stroke(255);
+//   text('YOU WIN', w / 2, h / 2);
+//
+//   textSize(30);
+//   text('Click anywhere to restart!', w / 2, h * 3 / 4);
+// }
+
+function gameOver() {
   background(195, 159, 212);
   textSize(80);
   stroke(255);
-  text('YOU WIN', w / 2, h / 2);
+  text('GAME OVER', w / 2, h / 2);
 
   textSize(30);
   text('Click anywhere to restart!', w / 2, h * 3 / 4);
 }
 
-function youWinMouseClicked() {
+// function youWinMouseClicked() {
+//   state = 'level 1'
+//   points = 0;
+// }
+function gameOverMouseClicked() {
   state = 'level 1'
   points = 0;
 }

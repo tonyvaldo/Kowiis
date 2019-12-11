@@ -1,6 +1,6 @@
 class Raccoon {
   constructor() {
-    this.r = 50;
+    this.r = 70;
     this.y = random(w);
     this.x = 802 + this.r;
 
