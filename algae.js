@@ -7,7 +7,7 @@ class Algae {
   }
 
   display(){
-    image(algaeImg, this.x, this.y, this.r, this.r);
+    image(algaeAnimation[frameCount % algaeAnimation.length], this.x, this.y, this.r, this.r);
     // ellipse(this.x, this.y, this.r, this.r);
   }
 

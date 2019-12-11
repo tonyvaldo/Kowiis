@@ -8,7 +8,7 @@ class Player {
   }
 
   display() {
-    image(playerImg, this.x, this.y, this.r, this.r);
+    image(playerAnimation[frameCount % playerAnimation.length], this.x, this.y, this.r, this.r);
     // ellipse(this.x, this.y, this.r, this.r);
   }
 

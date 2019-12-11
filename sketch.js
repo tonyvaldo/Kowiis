@@ -7,12 +7,15 @@ let points = 0;
 let w = 800;
 let h = 400;
 let player;
+// let algae;
 let algae = [];
-let playerImg;
-let algaeImg;
+// let playerImg;
+// let algaeImg;
 let riverImg;
+let titleImg;
 
 //spritesheets and animations
+let img;
 let titleSS;
 let titleJSON;
 let playerSS;
@@ -20,31 +23,61 @@ let algaeSS;
 let playerJSON;
 let algaeJSON;
 let playerAnimation = [];
-let coinAnimation = [];
+let algaeAnimation = [];
+// let titleAnimation = [];
 
-function preload(){
+function preload() {
   //still images
-  playerImg = loadImage('assets/clammy.png')
-  algaeImg = loadImage('assets/algae.png')
+  // playerImg = loadImage('assets/clammy.png')
+  // algaeImg = loadImage('assets/algae.png')
   riverImg = loadImage('assets/river sample.jpg')
+  titleImg = loadImage('assets/title_single.png')
 
-  //spritesheets
-  // titleSS = loadImage('');
-  // titleJSON = loadJSON('');
-  // playerSS = loadImage('');
-  // playerJSON = loadJSON('');
-  // algaeSS = loadImage('');
-  // algaeJSON = loadJSON('');
+  //  spritesheets
+  // titleSS = loadImage('assets/SS/title.png');
+  // titleJSON = loadJSON('assets/new_jsons/title.json');
+  playerSS = loadImage('assets/SS/clammysheet_right.png');
+  playerJSON = loadJSON('assets/new_jsons/clammy_right.json');
+  algaeSS = loadImage('assets/SS/algaesheet.png');
+  algaeJSON = loadJSON('assets/new_jsons/algae.json');
 }
 
 function setup() {
   cnv = createCanvas(w, h);
   textFont('courier');
 
-  player = new Player();
 
+
+  let playerFrames = playerJSON.frames;
+  for (let i = 0; i < playerFrames.length; i++) {
+    let pos = playerFrames[i].frame;
+    let img = playerSS.get(pos.x, pos.y, pos.w, pos.h);
+    playerAnimation.push(img);
+    console.log(playerFrames[i]);
+
+  }
+
+  let algaeFrames = algaeJSON.frames;
+  for (let i = 0; i < algaeFrames.length; i++) {
+    let pos = algaeFrames[i].frame;
+    let img = algaeSS.get(pos.x, pos.y, pos.w, pos.h);
+    algaeAnimation.push(img);
+    console.log(algaeFrames[i]);
+
+  }
+  //
+  // let titleFrames = titleJSON.frames;
+  // for (let i = 0; i < titleFrames.length; i++) {
+  //   let pos = titleFrames[i].frame;
+  //   let img = titleSS.get(pos.x, pos.y, pos.w, pos.h);
+  //   titleAnimation.push(img);
+  //   console.log(titleFrames[i]);
+  //
+  // }
+
+  player = new Player();
   // algae[0] = new Algae();
-  algae.push(new Algae());
+  // algae.push(new Algae());
 }
 
 function draw() {
@@ -83,14 +116,16 @@ function keyPressed() {
 }
 
 function title() {
-  background(33, 92, 49);
+  background(titleImg);
   textSize(80);
   stroke(255);
   textAlign(CENTER);
-  text('KOWIIS', w / 2, h / 5);
+  // text('KOWIIS', w / 2, h / 5);
 
   textSize(30);
-  text('Click to start swimming!', w / 2, h / 2);
+  text('Click to start swimming!', w / 2, h / 1.2);
+
+
 }
 
 function titleMouseClicked() {
@@ -102,36 +137,36 @@ function level1() {
   background(riverImg);
   // text('click for points', w/2, h - 30);
 
-if (random(1) <= 0.05){
-  algae.push(new Algae());
-}
+  if (random(1) <= 0.05) {
+    algae.push(new Algae());
+  }
 
   player.display();
   player.move();
 
-//iterating through algae array to display and move them
+  //iterating through algae array to display and move them
 
-//using for loop
-for (let i = 0; i < algae.length; i++){
-  algae[i].display();
-  algae[i].move();
-}
+  //using for loop
+  for (let i = 0; i < algae.length; i++) {
+    algae[i].display();
+    algae[i].move();
+  }
 
   //check for collision, and if there is, increase points by 1 AND splce that coin out of array
-// need to iterate backwards through array
+  // need to iterate backwards through array
 
-for (let i = algae.length - 1; i >= 0; i--){
-  if (dist(player.x, player.y, algae[i].x, algae[i].y) <= (player.r + algae[i].r) / 2) {
-    points++;
-    algae.splice(i, 1);
-  }else if (algae[i].y > h){
-    algae.splice(i, 1);
-    console.log('algae is gone!');
+  for (let i = algae.length - 1; i >= 0; i--) {
+    if (dist(player.x, player.y, algae[i].x, algae[i].y) <= (player.r + algae[i].r) / 2) {
+      points++;
+      algae.splice(i, 1);
+    } else if (algae[i].y > h) {
+      algae.splice(i, 1);
+      console.log('algae is gone!');
+    }
   }
-}
 
   text(`points: ${points}`, w / 8, h - 30);
-fill(249, 192, 249);
+  fill(249, 192, 249);
 }
 
 function level1MouseClicked() {
