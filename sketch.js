@@ -8,7 +8,7 @@ let w = 800;
 let h = 400;
 let player;
 // let algae;
-// let algae = [];
+let algae = [];
 // let playerImg;
 // let algaeImg;
 let riverImg;
@@ -156,6 +156,10 @@ function level1() {
   if (random(1) <= 0.05) {
     algae.push(new Algae());
   }
+
+  // if (random(1) <= 0.05) {
+  //   raccoon.push(new Raccoon());
+  // }
 
   player.display();
   player.move();
