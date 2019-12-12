@@ -14,6 +14,7 @@ let riverImg;
 let titleImg;
 let forestImg;
 let die;
+let squirt = []
 
 
 //spritesheets and animations
@@ -31,6 +32,7 @@ let raccoonJSON;
 let playerAnimation = [];
 let algaeAnimation = [];
 let raccoonAnimation = [];
+let squirtAnimation = [];
 // let titleAnimation = [];
 
 function preload() {
@@ -50,6 +52,9 @@ function preload() {
   algaeJSON = loadJSON('assets/new_jsons/algae.json');
   raccoonSS = loadImage('assets/SS/raccoonsheet.png');
   raccoonJSON = loadJSON('assets/new_jsons/raccoon.json');
+squirtSS = loadImage('assets/SS/squirtsheet.png');
+  squirtJSON = loadJSON('assets/new_jsons/squirt.json');
+
 }
 
 function setup() {
