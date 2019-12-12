@@ -4,15 +4,17 @@
 let state = 'title'
 let cnv;
 let points = 0;
-let w = 800;
-let h = 400;
+let w = 700;
+let h = 500;
 let player;
 // let algae;
 let algae = [];
 let raccoon = [];
 let riverImg;
 let titleImg;
+let forestImg;
 let die;
+
 
 //spritesheets and animations
 let img;
@@ -37,6 +39,7 @@ function preload() {
   // algaeImg = loadImage('assets/algae.png')
   riverImg = loadImage('assets/river sample.jpg')
   titleImg = loadImage('assets/title_single.png')
+  forestImg = loadImage('assets/forest.png')
 
   //  spritesheets
   // titleSS = loadImage('assets/SS/title.png');
@@ -164,7 +167,7 @@ function titleMouseClicked() {
 }
 
 function level1() {
-  background(riverImg);
+  background(forestImg);
   // text('click for points', w/2, h - 30);
 
   if (random(1) <= 0.05) {
