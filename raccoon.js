@@ -10,7 +10,7 @@ class Raccoon {
   }
 
   display(){
-    image(raccoonAnimation[frameCount % raccoonAnimation.length], this.x, this.y, this.r, this.r);
+    image(raccoonAnimation[int(frameCount / 2) % raccoonAnimation.length], this.x, this.y, this.r, this.r);
   }
 
   move(){

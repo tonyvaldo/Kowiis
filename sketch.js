@@ -12,6 +12,7 @@ let algae = [];
 let raccoon = [];
 let riverImg;
 let titleImg;
+let die;
 
 //spritesheets and animations
 let img;
@@ -59,7 +60,7 @@ function setup() {
     let pos = playerFrames[i].frame;
     let img = playerSS.get(pos.x, pos.y, pos.w, pos.h);
     playerAnimation.push(img);
-    console.log(playerFrames[i]);
+    // console.log(playerFrames[i]);
 
   }
 
@@ -68,7 +69,7 @@ function setup() {
     let pos = algaeFrames[i].frame;
     let img = algaeSS.get(pos.x, pos.y, pos.w, pos.h);
     algaeAnimation.push(img);
-    console.log(algaeFrames[i]);
+    console.log(algaeAnimation[i]);
 
   }
 
@@ -77,7 +78,7 @@ function setup() {
     let pos = raccoonFrames[i].frame;
     let img = raccoonSS.get(pos.x, pos.y, pos.w, pos.h);
     raccoonAnimation.push(img);
-    console.log(raccoonFrames[i]);
+    // console.log(raccoonFrames[i]);
 
   }
   //
@@ -91,6 +92,8 @@ function setup() {
   // }
 
   player = new Player();
+  // raccoon.push(new Raccoon());
+
   // algae[0] = new Algae();
   // algae.push(new Algae());
 }
@@ -104,18 +107,26 @@ function draw() {
       break;
     case 'level 1':
       level1();
-      cnv.mouseClicked(level1MouseClicked);
+      // cnv.mouseClicked(level1MouseClicked);
       break;
-    // case 'YOU WIN':
-    //   youWin();
-    //   cnv.mouseClicked(youWinMouseClicked)
-    //   break;
-    case 'GAME OVER':
-      gameOver();
-      cnv.mouseClicked(gameOverMouseClicked)
-      break;
-    default:
-      break;
+    case 'game over':
+         raccoonAnimation = [];
+         points = 0;
+         cnv.mouseClicked(function(){
+           die.stop();
+           state = 'game over';
+         });
+
+         gameOver();
+         break;
+       case 'win':
+         win();
+         cnv.mouseClicked(function(){
+           state = 'titlePage';
+         });
+         break;
+       default:
+         break;
   }
 
 }
@@ -148,7 +159,7 @@ function title() {
 }
 
 function titleMouseClicked() {
-  console.log('canvas is clicked on title page!');
+  // console.log('canvas is clicked on title page!');
   state = 'level 1'
 }
 
@@ -160,9 +171,9 @@ function level1() {
     algae.push(new Algae());
   }
 
-  // if (random(1) <= 0.05) {
-  //   raccoon.push(new Raccoon());
-  // }
+  if (random(1) <= 0.01) {
+    raccoon.push(new Raccoon());
+  }
 
   player.display();
   player.move();
@@ -174,6 +185,10 @@ function level1() {
     algae[i].display();
     algae[i].move();
   }
+  for (let i = 0; i < raccoon.length; i++) {
+    raccoon[i].display();
+    raccoon[i].move();
+  }
 
   //check for collision, and if there is, increase points by 1 AND splce that coin out of array
   // need to iterate backwards through array
@@ -184,7 +199,16 @@ function level1() {
       algae.splice(i, 1);
     } else if (algae[i].y > h) {
       algae.splice(i, 1);
-      console.log('algae is gone!');
+      // console.log('algae is gone!');
+    }
+
+  for (let i = raccoon.length - 1; i >= 0; i--) {
+    if (dist(player.x, player.y, raccoon[i].x, raccoon[i].y) <= (player.r + raccoon[i].r) / 2) {
+      die.play();
+      state = 'game over';
+    } else if (raccoon[i].y > h) {
+      raccoon.splice(i, 1);
+      // console.log('algae is gone!');
     }
   }
 
@@ -228,4 +252,4 @@ function gameOver() {
 function gameOverMouseClicked() {
   state = 'level 1'
   points = 0;
-}
+}}
